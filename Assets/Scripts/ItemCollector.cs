@@ -8,10 +8,12 @@ public class ItemCollector : MonoBehaviour
 
     [SerializeField] private TMPro.TextMeshProUGUI cherriesLabel;
     [SerializeField] private TMPro.TextMeshProUGUI deathLabel;
+    [SerializeField] private TMPro.TextMeshProUGUI maxScoreLabel;
 
     void Start()
     {
         deathLabel.text = "Deaths: " + PlayerPrefs.GetInt("death");
+        maxScoreLabel.text = "MaxScore: " + PlayerPrefs.GetInt("maxScore");
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 
@@ -21,6 +23,12 @@ public class ItemCollector : MonoBehaviour
             Destroy(collision.gameObject);
             cherries += 1;
             cherriesLabel.text = "Cherries: " + cherries;
+
+
+            if (cherries > PlayerPrefs.GetInt("maxScore"))
+            {
+                PlayerPrefs.SetInt("maxScore", cherries);
+            }
         }
     }
 }

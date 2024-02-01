@@ -27,15 +27,8 @@ public class PlayerLife : MonoBehaviour
     {
         rb.bodyType = RigidbodyType2D.Static;
         anim.SetTrigger("death");
+        PlayerPrefs.SetInt("death", PlayerPrefs.GetInt("death") + 1);
 
-        if (PlayerPrefs.GetInt("death") != 0)
-        {
-            PlayerPrefs.SetInt("death", PlayerPrefs.GetInt("death") + 1);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("death", 1);
-        }
     }
 
     private void RestartLevel() 
